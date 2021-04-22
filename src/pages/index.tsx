@@ -5,7 +5,8 @@ import {
   Flex,
   Heading,
   Grid,
-  GridItem 
+  GridItem, 
+  useColorModeValue
 } from '@chakra-ui/react';
 import Head from 'next/head';
 import { RiArrowRightLine } from 'react-icons/ri';
@@ -16,12 +17,16 @@ import { CoinCard } from '../components/Card/CoinCard';
 import { CoinList } from '../components/List/CoinList';
 
 export default function Home() {
+  const gradient = useColorModeValue("linear(to-t, blue.200 0%, blue.50 40%)", "linear(to-t, purple.900 0%, gray.800 40%)");
+  const text = useColorModeValue("purple.600", "purple.500");
+  const subText = useColorModeValue("gray.600", "gray.300");
+  
   return (
     <Box pb="20">
       <Head>
         <title>Pixel Coin</title>
       </Head>
-      <Box bgGradient="linear(to-t, blue.100 0%, blue.50 15%)">
+      <Box bgGradient={gradient}>
         <Container  
           maxW="container.xl"                
         >       
@@ -34,10 +39,10 @@ export default function Home() {
               pt="10"
               pb="36"
             >
-              <Heading size="3xl">
-                A maneira mais <Text as="span" color="purple.700">fácil</Text> de acompanhar seus <Text as="span" color="purple.700">investimentos</Text>
+              <Heading size="2xl">
+                A maneira mais <Text as="span" color={text}>fácil</Text> de acompanhar seus <Text as="span" color={text}>investimentos</Text>
               </Heading>
-              <Heading size="md" pt="3" color="gray.600">
+              <Heading size="md" pt="3" color={subText}>
                 Acompanhe em tempo real seus investimentos em criptomoedas
               </Heading>
               <Box mt="8">
@@ -66,6 +71,7 @@ export default function Home() {
       </Box>
       <Container maxW="container.xl" mt="-20">
         <Grid 
+          w="100%"
           gap={4}
           templateColumns={{ lg: "repeat(2, 1fr)", xl: "repeat(3, 1fr)"}}
         >

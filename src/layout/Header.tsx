@@ -4,7 +4,8 @@ import { FaMoon, FaSun } from 'react-icons/fa';
 
 export function Header() {
   const { toggleColorMode } = useColorMode();
-  const text = useColorModeValue('dark', 'light');
+  const logoImage = useColorModeValue('/logo.svg', '/logoDark.svg');
+  const itemMenuColor = useColorModeValue('gray.400', 'gray.200');
   const SwitchIcon = useColorModeValue(FaMoon, FaSun);
   const isLoggedIn = false;
 
@@ -16,7 +17,7 @@ export function Header() {
     >
       
       <Box w="192px">
-        <Image src="/logo.svg" layout="fill" alt="Logo pixel coin" />
+        <Image src={logoImage} layout="fill" alt="Logo pixel coin" />
       </Box>
 
       <Flex>
@@ -25,9 +26,9 @@ export function Header() {
             size="md"
             mr="4"
             fontSize="lg"
-            aria-label={`Switch to ${text} mode`}
+            aria-label={`Switch to color mode`}
             variant="ghost"
-            color="gray.400"
+            color={itemMenuColor}
             marginLeft="2"
             onClick={toggleColorMode}
             icon={<SwitchIcon />}
@@ -37,7 +38,7 @@ export function Header() {
           !isLoggedIn ? 
           <Flex alignItems="center"> 
             <Link mr="8">Cadastrar</Link>       
-            <Button borderColor="purple.600" color="purple.600" px="8" variant="outline">
+            <Button borderColor="purple.500" color="purple.500" px="8" variant="outline">
               Entrar
             </Button>
           </Flex> :

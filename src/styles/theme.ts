@@ -1,5 +1,5 @@
 import { extendTheme } from '@chakra-ui/react'
-import { config } from './config';
+import { config } from './config'
 
 export const theme = extendTheme({
   config,
@@ -8,11 +8,11 @@ export const theme = extendTheme({
     body: "Roboto",
   },
   styles: {
-    global: {
+    global: (props) => ({
       body: {
-        bg: 'gray.50',
-        color: 'gray.700'
-      }
-    }
+          bg: props.colorMode === "dark" ? "gray.900" : "gray.50",
+          color: props.colorMode === "dark" ? "gray.100" : "gray.700"        
+      }             
+    })
   }
 })

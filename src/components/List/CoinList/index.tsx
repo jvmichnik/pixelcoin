@@ -1,12 +1,14 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, useColorModeValue } from "@chakra-ui/react";
 import { Box, Table, Tbody, Thead, Tr, Th } from "@chakra-ui/react";
 
 import { CoinItem } from './CoinItem'
 
 export function CoinList(){
+  const bg = useColorModeValue("white", "gray.800");
+  
   return (
     <Flex
-      bg="white"
+      bg={bg}
       shadow="0 0 20px rgba(0, 0, 0, 0.05)"
       borderRadius="2xl"
       mx="2"

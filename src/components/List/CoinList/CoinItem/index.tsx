@@ -55,15 +55,15 @@ export function CoinItem({ symbol, name, value, volume }: CoinItemProps){
       </Td>
       <Td px="1">
         <Box lineHeight="normal">
-          <Text as="strong" fontSize="large" noOfLines={1} maxWidth="100px">{name}</Text>
+          <Text as="strong" fontSize="medium" fontWeight="medium" noOfLines={1} maxWidth="100px">{name}</Text>
           <Text color="gray.500" fontSize="small" casing="uppercase">{symbol}</Text>
         </Box>
       </Td>
-      <Td textAlign="right"><Text as="strong" fontSize="large">{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)}</Text></Td>
+      <Td textAlign="right"><Text as="strong" fontSize="medium">{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)}</Text></Td>
       <Td textAlign="right"><Text fontWeight="medium"><ValueVariation positive>1,5%</ValueVariation></Text></Td>
       <Td textAlign="right"><Text fontWeight="medium"><ValueVariation>1,5%</ValueVariation></Text></Td>
       <Td textAlign="right"><Text fontWeight="medium"><ValueVariation>1,5%</ValueVariation></Text></Td>
-      <Td textAlign="right"><Text as="strong" fontSize="large">{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(volume)}</Text></Td>
+      <Td textAlign="right"><Text as="strong" fontSize="medium">{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(volume)}</Text></Td>
       <Td p="0" textAlign="right">
         <Flex justifyContent="flex-end">
           <AreaChart width={150} height={70} data={data}>
