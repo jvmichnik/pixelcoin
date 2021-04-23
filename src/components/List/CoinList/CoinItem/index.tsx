@@ -21,9 +21,9 @@ export function CoinItem({ symbol, name, image, currentPrice, volume, percent1h,
   return (
     <Tr>
       <Td p="0">
-        <Flex w="40px" margin="auto">
+        <Box w="40px" margin="auto">
           <img src={image} height="100%" width="100%" />
-        </Flex>
+        </Box>
       </Td>
       <Td px="1">
         <Box lineHeight="normal">

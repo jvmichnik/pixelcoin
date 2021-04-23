@@ -28,9 +28,9 @@ export function CoinCard({ symbol, name, image, currentPrice, chart7d = [] } : C
     >
       <Box>
         <Flex alignItems="center">
-          <Flex minW="45px">
+          <Box minW="45px">
             <img src={image} width="45px" height="45px" />
-          </Flex>
+          </Box>
           <Box pl="3" lineHeight="normal">
             <Text fontSize="1.2rem" fontWeight="medium" maxW="110px" isTruncated>{name}</Text>
             <Text color="gray.500" fontSize="0.9rem" casing="uppercase">{symbol}</Text>

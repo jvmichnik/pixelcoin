@@ -62,7 +62,7 @@ export function Home({ data }: HomeProps) {
   return (
     <Box pb="20">
       <Head>
-        <title>Pixel Coin</title>
+        <title>Pixelco.in</title>
       </Head>
       <Box bgGradient={gradient}>
         <Container  
