@@ -30,7 +30,11 @@ interface CoinItem{
   chart7d: number[];
 }
 
-export function Home({ data }: CoinItem) {
+interface HomeProps{
+  data: CoinItem[]
+}
+
+export function Home({ data }: HomeProps) {
   const gradient = useColorModeValue("linear(to-t, blue.200 0%, blue.50 40%)", "linear(to-t, purple.900 0%, gray.800 40%)");
   const text = useColorModeValue("purple.600", "purple.500");
   const subText = useColorModeValue("gray.600", "gray.300");
