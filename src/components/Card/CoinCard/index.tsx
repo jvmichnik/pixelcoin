@@ -1,5 +1,4 @@
 import { Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
-import Image from "next/image";
 import { 
   ResponsiveContainer,
   AreaChart, 
@@ -9,11 +8,12 @@ import {
 interface CoinCardProps {
   name: string;
   symbol: string;
+  image: string;
   currentPrice: number;
   chart7d: number[];
 }
 
-export function CoinCard({ symbol, name, currentPrice, chart7d = [] } : CoinCardProps){
+export function CoinCard({ symbol, name, image, currentPrice, chart7d = [] } : CoinCardProps){
   const bg = useColorModeValue("white", "gray.800");
 
   return (
@@ -29,7 +29,7 @@ export function CoinCard({ symbol, name, currentPrice, chart7d = [] } : CoinCard
       <Box>
         <Flex alignItems="center">
           <Flex minW="45px">
-            <Image src={`/coins/${symbol}.webp`} width="45px" height="45px" />
+            <img src={image} width="45px" height="45px" />
           </Flex>
           <Box pl="3" lineHeight="normal">
             <Text fontSize="1.2rem" fontWeight="medium" maxW="110px" isTruncated>{name}</Text>
@@ -43,7 +43,7 @@ export function CoinCard({ symbol, name, currentPrice, chart7d = [] } : CoinCard
       </Box>
       <Flex 
         w="100%" 
-        maxW={{ base: 70, sm: 200, md: 460, lg: 220, xl: 150 }}
+        maxW={{ base: 75, sm: 200, md: 460, lg: 220, xl: 150 }}
       >
         <ResponsiveContainer height="100%">
           <AreaChart data={chart7d.map(x => ({ value: x }))}>

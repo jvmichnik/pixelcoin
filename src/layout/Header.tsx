@@ -11,7 +11,7 @@ export function Header() {
 
   return (
     <Flex 
-      h="28" 
+      h="28"       
       alignItems="center"
       justifyContent="space-between"
     >
@@ -34,6 +34,8 @@ export function Header() {
             icon={<SwitchIcon />}
           />
         </Flex>
+        <Box display={{base: 'none', md: 'flex'}}>
+
         {
           !isLoggedIn ? 
           <Flex alignItems="center"> 
@@ -44,6 +46,7 @@ export function Header() {
           </Flex> :
           <Text color="gray.400" fontWeight="medium">João Vitor</Text> 
         }      
+        </Box>
       </Flex> 
     </Flex>
   );

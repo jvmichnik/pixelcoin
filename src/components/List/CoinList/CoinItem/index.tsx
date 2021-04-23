@@ -18,7 +18,6 @@ interface CoinItemProps{
 }
 
 export function CoinItem({ symbol, name, image, currentPrice, volume, percent1h, percent24h, percent7d, chart7d = [] }: CoinItemProps){
-  console.log(chart7d)
   return (
     <Tr>
       <Td p="0">
