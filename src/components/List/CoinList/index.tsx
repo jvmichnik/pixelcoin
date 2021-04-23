@@ -3,7 +3,23 @@ import { Box, Table, Tbody, Thead, Tr, Th } from "@chakra-ui/react";
 
 import { CoinItem } from './CoinItem'
 
-export function CoinList(){
+interface CoinItem{
+  name: string;
+  symbol: string;
+  image: string;
+  currentPrice: number;
+  volume: number;
+  percent1h: number;
+  percent24h: number;
+  percent7d: number;
+  chart7d: number[];
+}
+
+interface CoinListProps{
+  items: CoinItem[]
+}
+
+export function CoinList({ items = [] } :CoinListProps){
   const bg = useColorModeValue("white", "gray.800");
   
   return (
@@ -31,10 +47,20 @@ export function CoinList(){
             </Tr>
           </Thead>
           <Tbody>
-            <CoinItem name="Bitcoin" symbol="btc" value={200934.34} volume={200934.34} />
-            <CoinItem name="Ethereum" symbol="eth" value={200934.34} volume={200934.34} />
-            <CoinItem name="Binance Coin" symbol="bnb" value={200934.34} volume={200934.34} />
-            <CoinItem name="Tether" symbol="xrp" value={200934.34} volume={200934.34} />
+            {
+              items.map(coin => <CoinItem 
+                  key={coin.symbol}
+                  name={coin.name} 
+                  symbol={coin.symbol}
+                  image={coin.image}
+                  currentPrice={coin.currentPrice}
+                  volume={coin.volume}
+                  percent1h={coin.percent1h}
+                  percent24h={coin.percent24h}
+                  percent7d={coin.percent7d}
+                  chart7d={coin.chart7d}
+                />)
+            }
           </Tbody>
         </Table>
       </Box>

@@ -9,35 +9,12 @@ import {
 interface CoinCardProps {
   name: string;
   symbol: string;
-  value: number;
+  currentPrice: number;
+  chart7d: number[];
 }
 
-export function CoinCard({ symbol, name, value } : CoinCardProps){
+export function CoinCard({ symbol, name, currentPrice, chart7d = [] } : CoinCardProps){
   const bg = useColorModeValue("white", "gray.800");
-
-  const data = [
-    {
-      uv: 1
-    },
-    {
-      uv: 2
-    },
-    {
-      uv: 3
-    },
-    {
-      uv: 2
-    },
-    {
-      uv: 6
-    },
-    {
-      uv: 7
-    },
-    {
-      uv: 10
-    },
-  ];
 
   return (
     <Flex 
@@ -61,7 +38,7 @@ export function CoinCard({ symbol, name, value } : CoinCardProps){
         </Flex>
         <Box pt="3" lineHeight="normal">
           <Text color="gray.500" fontSize="medium" fontWeight="normal">Valor</Text>
-          <Text as="strong" fontSize="1.4rem">{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)}</Text>
+          <Text as="strong" fontSize="1.4rem">{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(currentPrice)}</Text>
         </Box>
       </Box>
       <Flex 
@@ -69,14 +46,14 @@ export function CoinCard({ symbol, name, value } : CoinCardProps){
         maxW={{ base: 70, sm: 200, md: 460, lg: 220, xl: 150 }}
       >
         <ResponsiveContainer height="100%">
-          <AreaChart data={data}>
+          <AreaChart data={chart7d.map(x => ({ value: x }))}>
             <defs>
               <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#8884d8" stopOpacity={0.3}/>
                 <stop offset="100%" stopColor="#8884d8" stopOpacity={0}/>
               </linearGradient>
             </defs>
-            <Area type="monotone" dataKey="uv" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+            <Area type="monotone" dataKey="value" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
           </AreaChart>
         </ResponsiveContainer>
       </Flex>

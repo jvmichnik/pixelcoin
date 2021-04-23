@@ -1,3 +1,4 @@
+import { useEffect, useState, useMemo } from 'react';
 import { 
   Container,
   Text,
@@ -12,15 +13,48 @@ import Head from 'next/head';
 import { RiArrowRightLine } from 'react-icons/ri';
 
 import { Header } from '../layout/Header';
+import { useGetCoins } from '../hooks/useGetCoins'
 
 import { CoinCard } from '../components/Card/CoinCard';
 import { CoinList } from '../components/List/CoinList';
 
-export default function Home() {
+interface CoinItem{
+  name: string;
+  symbol: string;
+  image: string;
+  currentPrice: number;
+  volume: number;
+  percent1h: number;
+  percent24h: number;
+  percent7d: number;
+  chart7d: number[];
+}
+
+export function Home({ data }: CoinItem) {
   const gradient = useColorModeValue("linear(to-t, blue.200 0%, blue.50 40%)", "linear(to-t, purple.900 0%, gray.800 40%)");
   const text = useColorModeValue("purple.600", "purple.500");
   const subText = useColorModeValue("gray.600", "gray.300");
+
+  const [coins, setCoins] = useState<CoinItem[]>(data);
   
+  useEffect(() => {
+    async function get() {
+      const data = await useGetCoins();
+      setCoins(data)
+    }
+    get();
+  },[])
+
+  const mainCards = useMemo(() => {
+    return coins.slice(0, 4).map((coin, i) => {
+      return (
+        <GridItem display={i == 3 && { xl: "none" }}>
+          <CoinCard name={coin.name} symbol={coin.symbol} currentPrice={coin.currentPrice} chart7d={coin.chart7d} />
+        </GridItem>
+      );
+    })
+  },[coins])
+
   return (
     <Box pb="20">
       <Head>
@@ -75,24 +109,20 @@ export default function Home() {
           gap={4}
           templateColumns={{ lg: "repeat(2, 1fr)", xl: "repeat(3, 1fr)"}}
         >
-          <GridItem>
-            <CoinCard name="Bitcoin" symbol="btc" value={203093.34} />
-          </GridItem>
-          <GridItem>
-            <CoinCard name="Ethereum" symbol="eth" value={200394.34} />
-          </GridItem>
-          <GridItem>
-            <CoinCard name="Binance Coin" symbol="bnb" value={203094.34} />
-          </GridItem>
-          <GridItem display={{ xl: "none" }}>
-            <CoinCard name="Tether" symbol="xrp" value={200934.34} />
-          </GridItem>
+          {mainCards}
         </Grid>
         <Box mt="8">
-          <CoinList />
+          <CoinList items={coins} />
         </Box>
       </Container>
 
     </Box>
   )
 }
+
+export async function getServerSideProps() {
+  const data = await useGetCoins()
+  return { props: { data } }
+}
+
+export default Home;
