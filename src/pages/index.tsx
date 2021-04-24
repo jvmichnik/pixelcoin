@@ -53,7 +53,16 @@ export function Home({ data }: HomeProps) {
     return coins.slice(0, 4).map((coin, i) => {
       return (
         <GridItem display={i == 3 && { xl: "none" }}>
-          <CoinCard name={coin.name} symbol={coin.symbol} image={coin.image} currentPrice={coin.currentPrice} chart7d={coin.chart7d} />
+          <CoinCard 
+            name={coin.name} 
+            symbol={coin.symbol} 
+            image={coin.image} 
+            currentPrice={coin.currentPrice}  
+            percent1h={coin.percent1h}
+            percent24h={coin.percent24h}
+            percent7d={coin.percent7d}
+            chart7d={coin.chart7d} 
+          />
         </GridItem>
       );
     })

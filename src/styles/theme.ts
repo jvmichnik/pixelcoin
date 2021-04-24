@@ -9,9 +9,12 @@ export const theme = extendTheme({
   },
   styles: {
     global: (props) => ({
+      html: {
+        fontSize: ["13px", "16px"]
+      },
       body: {
-          bg: props.colorMode === "dark" ? "gray.900" : "gray.50",
-          color: props.colorMode === "dark" ? "gray.100" : "gray.700"        
+        bg: props.colorMode === "dark" ? "gray.900" : "gray.50",
+        color: props.colorMode === "dark" ? "gray.100" : "gray.700"        
       }             
     })
   }

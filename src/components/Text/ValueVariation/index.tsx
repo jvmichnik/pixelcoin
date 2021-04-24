@@ -1,18 +1,18 @@
 import { Flex, Text } from "@chakra-ui/react";
-import { RiArrowDropUpFill, RiArrowDropDownFill } from 'react-icons/ri'
+import { FaSortDown, FaSortUp } from 'react-icons/fa'
 
 interface ValueVariationProps{
-  children: React.ReactNode;
-  positive?: boolean;
+  children: number;
+  fontSize?: number;
 }
 
-export function ValueVariation({ children, positive = false } : ValueVariationProps){
+export function ValueVariation({ children, fontSize = 1 } : ValueVariationProps){
+  const positive = children >= 0;
+
   return (
-    <Text color={positive ? "green.500" : "red.500" } fontWeight="black">
-      <Flex justifyContent="flex-end" alignItems="center">
-        {positive ? <RiArrowDropUpFill size="2rem" /> : <RiArrowDropDownFill size="2rem" /> }
-        {children}
-      </Flex>
-    </Text>
+    <Flex alignItems="center" fontSize={`${fontSize}rem`} justifyContent="flex-end" fontWeight="bold" color={positive ? "green.500" : "red.500" }>
+        {positive ? <FaSortUp style={{marginTop: 4}} /> : <FaSortDown style={{marginBottom: 7}}  /> }
+        {children.toFixed(1)}
+    </Flex>
   );
 }

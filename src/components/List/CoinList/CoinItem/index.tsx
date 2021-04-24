@@ -32,9 +32,9 @@ export function CoinItem({ symbol, name, image, currentPrice, volume, percent1h,
         </Box>
       </Td>
       <Td textAlign="right"><Text as="strong" fontSize="medium">{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(currentPrice)}</Text></Td>
-      <Td textAlign="right"><Text fontWeight="medium"><ValueVariation positive>{percent1h.toFixed(1)}</ValueVariation></Text></Td>
-      <Td textAlign="right"><Text fontWeight="medium"><ValueVariation>{percent24h.toFixed(1)}</ValueVariation></Text></Td>
-      <Td textAlign="right"><Text fontWeight="medium"><ValueVariation>{percent7d.toFixed(1)}</ValueVariation></Text></Td>
+      <Td textAlign="right"><Flex justifyContent="flex-end"><ValueVariation>{percent1h}</ValueVariation></Flex></Td>
+      <Td textAlign="right"><Flex justifyContent="flex-end"><ValueVariation>{percent24h}</ValueVariation></Flex></Td>
+      <Td textAlign="right"><Flex justifyContent="flex-end"><ValueVariation>{percent7d}</ValueVariation></Flex></Td>
       <Td textAlign="right"><Text as="strong" fontSize="medium">{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(volume)}</Text></Td>
       <Td p="0" textAlign="right">
         <Flex justifyContent="flex-end">
