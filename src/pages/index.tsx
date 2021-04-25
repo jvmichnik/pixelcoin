@@ -46,13 +46,18 @@ export function Home({ data }: HomeProps) {
       const data = await useGetCoins();
       setCoins(data)
     }
-    get();
-  },[])
+
+    const interval = setInterval(() => {
+      console.log('executou')
+      get();
+    }, 60000);
+    return () => clearInterval(interval);
+  }, []);
 
   const mainCards = useMemo(() => {
-    return coins.slice(0, 4).map((coin, i) => {
+    return coins.map((coin, i) => {
       return (
-        <GridItem display={i == 3 && { xl: "none" }}>
+        <GridItem display={i >= 3 && { xl: "none" }}>
           <CoinCard 
             name={coin.name} 
             symbol={coin.symbol} 
@@ -92,7 +97,7 @@ export function Home({ data }: HomeProps) {
               <Heading size="md" pt="3" color={subText}>
                 Acompanhe em tempo real seus investimentos em criptomoedas
               </Heading>
-              <Box mt="8">
+              {/* <Box mt="8">
                 <Box 
                   as="button"
                   color="white"
@@ -110,7 +115,7 @@ export function Home({ data }: HomeProps) {
                     <RiArrowRightLine />
                   </Flex>
                 </Box>
-              </Box>
+              </Box> */}
             </Flex>
             <Box w="100%" ></Box>
           </Flex>
@@ -124,7 +129,7 @@ export function Home({ data }: HomeProps) {
         >
           {mainCards}
         </Grid>
-        <Box mt="8">
+        <Box mt="8" display={{ base: 'none', xl: 'block' }}>
           <CoinList items={coins} />
         </Box>
       </Container>

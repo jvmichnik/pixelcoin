@@ -29,7 +29,7 @@ export function CoinCard({ symbol, name, image, currentPrice, percent1h, percent
       px="8"
       mx="1"     
     >
-      <Flex flexDirection="column" minW="170px">
+      <Flex flexDirection="column" minW={['140px', '170px']}>
         <Flex alignItems="center">
           <Box minW="40px">
             <img src={image} width="40px" height="40px" />
@@ -47,7 +47,7 @@ export function CoinCard({ symbol, name, image, currentPrice, percent1h, percent
       <Box w="100%">
         <Grid autoFlow="column" gridGap="2" px="2">
           <Box>
-            <Text fontSize="small" textAlign="right">1d</Text>
+            <Text fontSize="small" textAlign="right">1h</Text>
             <ValueVariation fontSize={0.9}>{percent1h}</ValueVariation>
           </Box>
           <Box>
