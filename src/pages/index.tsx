@@ -26,6 +26,8 @@ interface CoinItem{
   percent1h: number;
   percent24h: number;
   percent7d: number;
+  marketCap: number;
+  
   chart7d: number[];
 }
 

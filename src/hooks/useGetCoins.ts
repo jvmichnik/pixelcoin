@@ -10,6 +10,7 @@ export async function useGetCoins(){
     percent1h: x.price_change_percentage_1h_in_currency, 
     percent24h: x.price_change_percentage_24h_in_currency,
     percent7d: x.price_change_percentage_7d_in_currency,
+    marketCap: x.market_cap,
     chart7d: x.sparkline_in_7d.price
   }));
 }

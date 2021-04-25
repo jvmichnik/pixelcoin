@@ -2,7 +2,7 @@ import { Tr, Td, Box, Flex, Text } from "@chakra-ui/react";
 
 import { ValueVariation } from '../../../../components/Text/ValueVariation'
 import { ValueChart } from '../../../../components/Chart/ValueChart'
-import { formatCurrency } from "../../../../_utils/format";
+import { formatCurrency, formatCurrencyText } from "../../../../_utils/format";
 
 interface CoinItemProps{
   name: string;
@@ -13,10 +13,11 @@ interface CoinItemProps{
   percent1h: number;
   percent24h: number;
   percent7d: number;
+  marketCap: number;
   chart7d: number[];
 }
 
-export function CoinItem({ symbol, name, image, currentPrice, volume, percent1h, percent24h, percent7d, chart7d = [] }: CoinItemProps){
+export function CoinItem({ symbol, name, image, currentPrice, volume, percent1h, percent24h, percent7d, marketCap, chart7d = [] }: CoinItemProps){
   return (
     <Tr>
       <Td p="0">
@@ -34,7 +35,8 @@ export function CoinItem({ symbol, name, image, currentPrice, volume, percent1h,
       <Td textAlign="right"><Flex justifyContent="flex-end"><ValueVariation>{percent1h}</ValueVariation></Flex></Td>
       <Td textAlign="right"><Flex justifyContent="flex-end"><ValueVariation>{percent24h}</ValueVariation></Flex></Td>
       <Td textAlign="right"><Flex justifyContent="flex-end"><ValueVariation>{percent7d}</ValueVariation></Flex></Td>
-      <Td textAlign="right"><Text as="strong" fontSize="medium">{formatCurrency(volume)}</Text></Td>
+      <Td textAlign="right"><Text as="strong" fontSize="medium">{formatCurrencyText(volume)}</Text></Td>
+      <Td textAlign="right"><Text as="strong" fontSize="medium">{formatCurrencyText(marketCap)}</Text></Td>
       <Td p="0" w="170px">
         <Box p="0" h="70px">
           <ValueChart data={chart7d.map(x => ({ value: x }))}/>

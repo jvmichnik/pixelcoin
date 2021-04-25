@@ -51,9 +51,11 @@ export function CoinCard({ coin } : CoinCardProps){
             <Text color="gray.500" fontSize="0.9rem" casing="uppercase">{coin.symbol}</Text>
           </Box>
         </Flex>
-        <Flex as="button" onClick={onOpen} h="100%" lineHeight="1.3" flexDirection="column" justifyContent="flex-end">
-          <Text color="gray.500" fontSize="medium" fontWeight="normal">Valor</Text>
-          <Text as="strong" fontSize="1.4rem">{formatCurrency(coin.currentPrice)}</Text>
+        <Flex h="100%" lineHeight="1.3" alignItems="flex-end">
+          <Box as="button" onClick={onOpen}>
+            <Text color="gray.500" textAlign="left" fontSize="medium" fontWeight="normal">Valor</Text>
+            <Text as="strong" fontSize="1.4rem">{formatCurrency(coin.currentPrice)}</Text>
+          </Box>
         </Flex>
         <ModalBase size="xs" isOpen={isOpen} onClose={onClose}>
           <CoinConvert coin={coin} />

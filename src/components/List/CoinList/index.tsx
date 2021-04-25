@@ -12,6 +12,7 @@ interface CoinItem{
   percent1h: number;
   percent24h: number;
   percent7d: number;
+  marketCap: number;
   chart7d: number[];
 }
 
@@ -43,6 +44,7 @@ export function CoinList({ items = [] } :CoinListProps){
               <Th py="0" textAlign="right">24h</Th>
               <Th py="0" textAlign="right">7d</Th>
               <Th py="0" textAlign="right">Volume 24h</Th>
+              <Th py="0" textAlign="right">Cap. Mercado</Th>
               <Th py="0" textAlign="right">Últimos 7 dias</Th>
             </Tr>
           </Thead>
@@ -58,6 +60,7 @@ export function CoinList({ items = [] } :CoinListProps){
                   percent1h={coin.percent1h}
                   percent24h={coin.percent24h}
                   percent7d={coin.percent7d}
+                  marketCap={coin.marketCap}
                   chart7d={coin.chart7d}
                 />)
             }
