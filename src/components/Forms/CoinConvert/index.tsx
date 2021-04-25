@@ -24,8 +24,8 @@ export function CoinConvert({ coin }: CoinConvertProps){
   } 
 
   useEffect(() => {
-    coinRef.current.value = 2;
-    currencyRef.current.value = 2;
+    coinRef.current.value = 1;
+    currencyRef.current.value = coin.currentPrice;
 
     console.log(coinRef)
   },[])
