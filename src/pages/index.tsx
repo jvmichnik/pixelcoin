@@ -48,7 +48,6 @@ export function Home({ data }: HomeProps) {
     }
 
     const interval = setInterval(() => {
-      console.log('executou')
       get();
     }, 60000);
     return () => clearInterval(interval);
@@ -57,7 +56,7 @@ export function Home({ data }: HomeProps) {
   const mainCards = useMemo(() => {
     return coins.map((coin, i) => {
       return (
-        <GridItem display={i >= 3 && { xl: "none" }}>
+        <GridItem key={coin.symbol} display={i >= 3 && { xl: "none" }}>
           <CoinCard 
             name={coin.name} 
             symbol={coin.symbol} 

@@ -1,9 +1,7 @@
 import { Box, Grid, Flex, Text, useColorModeValue } from "@chakra-ui/react";
-import { 
-  ResponsiveContainer,
-  AreaChart, 
-  Area
-} from 'recharts';
+import { formatCurrency } from "../../../_utils/format";
+
+import { ValueChart } from '../../Chart/ValueChart'
 import { ValueVariation } from "../../Text/ValueVariation";
 
 interface CoinCardProps {
@@ -41,7 +39,7 @@ export function CoinCard({ symbol, name, image, currentPrice, percent1h, percent
         </Flex>
         <Flex h="100%" lineHeight="1.3" flexDirection="column" justifyContent="flex-end">
           <Text color="gray.500" fontSize="medium" fontWeight="normal">Valor</Text>
-          <Text as="strong" fontSize="1.4rem">{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(currentPrice)}</Text>
+          <Text as="strong" fontSize="1.4rem">{formatCurrency(currentPrice)}</Text>
         </Flex>
       </Flex>
       <Box w="100%">
@@ -60,17 +58,7 @@ export function CoinCard({ symbol, name, image, currentPrice, percent1h, percent
           </Box>
         </Grid>
         <Box width="100%" height="100%" maxH="70px">
-          <ResponsiveContainer width="99%">
-            <AreaChart data={chart7d.map(x => ({ value: x }))}>
-              <defs>
-                <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#8884d8" stopOpacity={0.3}/>
-                  <stop offset="100%" stopColor="#8884d8" stopOpacity={0}/>
-                </linearGradient>
-              </defs>
-              <Area type="monotone" dataKey="value" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
-            </AreaChart>
-          </ResponsiveContainer>
+          <ValueChart data={chart7d.map(x => ({ value: x }))}/>          
         </Box>
       </Box>
     </Flex>
