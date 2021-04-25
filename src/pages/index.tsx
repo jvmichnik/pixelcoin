@@ -10,7 +10,6 @@ import {
   useColorModeValue
 } from '@chakra-ui/react';
 import Head from 'next/head';
-import { RiArrowRightLine } from 'react-icons/ri';
 
 import { Header } from '../layout/Header';
 import { useGetCoins } from '../hooks/useGetCoins'
@@ -39,6 +38,7 @@ export function Home({ data }: HomeProps) {
   const text = useColorModeValue("purple.600", "purple.500");
   const subText = useColorModeValue("gray.600", "gray.300");
 
+
   const [coins, setCoins] = useState<CoinItem[]>(data);
   
   useEffect(() => {
@@ -53,24 +53,11 @@ export function Home({ data }: HomeProps) {
     return () => clearInterval(interval);
   }, []);
 
-  const mainCards = useMemo(() => {
-    return coins.map((coin, i) => {
-      return (
-        <GridItem key={coin.symbol} display={i >= 3 && { xl: "none" }}>
-          <CoinCard 
-            name={coin.name} 
-            symbol={coin.symbol} 
-            image={coin.image} 
-            currentPrice={coin.currentPrice}  
-            percent1h={coin.percent1h}
-            percent24h={coin.percent24h}
-            percent7d={coin.percent7d}
-            chart7d={coin.chart7d} 
-          />
-        </GridItem>
-      );
-    })
-  },[coins])
+  const mainCards = useMemo(() => coins.map((coin, i) => (
+    <GridItem key={coin.symbol} display={i >= 3 && { xl: "none" }}>
+      <CoinCard coin={coin} />
+    </GridItem>
+  )),[coins])
 
   return (
     <Box pb="20">
