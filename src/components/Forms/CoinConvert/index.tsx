@@ -22,7 +22,9 @@ export function CoinConvert({ coin }: CoinConvertProps){
     const value = Number(valueReplaced.replace(',', '.'));
 
     var operationValue = operation(value, coin.currentPrice);
-    operationValue = fixed && !Number.isInteger(operationValue) ? operationValue.toFixed(fixed) : String(operationValue);
+    operationValue = fixed && !Number.isInteger(operationValue)
+                      ? operationValue.toFixed(operationValue > 1000 ? 2 : fixed)
+                      : String(operationValue);
 
     return [valueReplaced, operationValue.replace('.', ',')];
   }
@@ -42,7 +44,7 @@ export function CoinConvert({ coin }: CoinConvertProps){
   const handleCurrencyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
 
-    const [valueText, valueConverted] = convertValue(value, (a: number, b: number) => a / b, 10);
+    const [valueText, valueConverted] = convertValue(value, (a: number, b: number) => a / b, 6);
     const coinElement = coinRef.current; 
     const currencyElement = currencyRef.current; 
     
@@ -64,19 +66,22 @@ export function CoinConvert({ coin }: CoinConvertProps){
         <InputLeftElement
           pointerEvents="none"
           color="gray.300"
-          fontSize="1.2em"
-          children={<img src={coin.image} width="20px" />}
+          children={<img src={coin.image} width="50px" />}
+          mx="4"
+          height="100%"
         />
-        <Input ref={coinRef} onChange={handleCoinChange} />
+        <Input pl="20" ref={coinRef} height="70" fontSize="1.8rem" onChange={handleCoinChange} />
       </InputGroup>
       <InputGroup>
         <InputLeftElement
           pointerEvents="none"
           color="gray.300"
-          fontSize="0.9rem"
+          fontSize="1.8rem"
+          mx="4"
           children="R$"
+          height="100%"
         />
-        <Input ref={currencyRef} onChange={handleCurrencyChange} />
+        <Input pl="20" ref={currencyRef} height="70" fontSize="1.8rem" onChange={handleCurrencyChange} />
       </InputGroup>
     </Stack>
   )
