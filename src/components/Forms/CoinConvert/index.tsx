@@ -13,19 +13,25 @@ interface CoinConvertProps{
 }
 
 export function CoinConvert({ coin }: CoinConvertProps){
-  const coinRef = useRef();
-  const currencyRef = useRef();
+  const coinRef = useRef<HTMLInputElement>();
+  const currencyRef = useRef<HTMLInputElement>();
 
   const handleCoinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     const valueConverted = Number(value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1'));
-    coinRef.current.value = valueConverted;
-    currencyRef.current.value = valueConverted * coin.currentPrice;
+
+    const coinElement = coinRef.current; 
+    const currencyElement = coinRef.current; 
+    coinElement.value = String(valueConverted);
+    currencyElement.value = String(valueConverted * coin.currentPrice);
   } 
 
   useEffect(() => {
-    coinRef.current.value = 1;
-    currencyRef.current.value = coin.currentPrice;
+    const coinElement = coinRef.current; 
+    const currencyElement = coinRef.current; 
+
+    coinElement.value = String(1);
+    currencyElement.value = String(coin.currentPrice);
 
     console.log(coinRef)
   },[])
