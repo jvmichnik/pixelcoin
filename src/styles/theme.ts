@@ -14,7 +14,8 @@ export const theme = extendTheme({
       },
       body: {
         bg: props.colorMode === "dark" ? "gray.900" : "gray.50",
-        color: props.colorMode === "dark" ? "gray.100" : "gray.700"        
+        color: props.colorMode === "dark" ? "gray.100" : "gray.700",
+        touchAction: "manipulation"
       }             
     })
   }

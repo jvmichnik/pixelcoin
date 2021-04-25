@@ -55,7 +55,7 @@ export function CoinCard({ coin } : CoinCardProps){
           <Text color="gray.500" fontSize="medium" fontWeight="normal">Valor</Text>
           <Text as="strong" fontSize="1.4rem">{formatCurrency(coin.currentPrice)}</Text>
         </Flex>
-        <ModalBase isOpen={isOpen} onClose={onClose}>
+        <ModalBase size="xs" isOpen={isOpen} onClose={onClose}>
           <CoinConvert coin={coin} />
         </ModalBase>
       </Flex>
