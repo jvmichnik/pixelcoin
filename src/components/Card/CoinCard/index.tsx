@@ -29,13 +29,13 @@ export function CoinCard({ symbol, name, image, currentPrice, percent1h, percent
       px="8"
       mx="1"     
     >
-      <Flex flexDirection="column" minW={['140px', '170px']}>
-        <Flex alignItems="center">
+      <Flex flexDirection="column">
+        <Flex alignItems="center" minW={'10rem'}>
           <Box minW="40px">
             <img src={image} width="40px" height="40px" />
           </Box>
           <Box pl="3" lineHeight="normal">
-            <Text fontSize="1.2rem" fontWeight="medium" maxW="110px" isTruncated>{name}</Text>
+            <Text fontSize="1.2rem" fontWeight="medium" maxW={'7rem'} isTruncated>{name}</Text>
             <Text color="gray.500" fontSize="0.9rem" casing="uppercase">{symbol}</Text>
           </Box>
         </Flex>
