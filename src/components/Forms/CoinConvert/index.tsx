@@ -21,19 +21,17 @@ export function CoinConvert({ coin }: CoinConvertProps){
     const valueConverted = Number(value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1'));
 
     const coinElement = coinRef.current; 
-    const currencyElement = coinRef.current; 
+    const currencyElement = currencyRef.current; 
     coinElement.value = String(valueConverted);
     currencyElement.value = String(valueConverted * coin.currentPrice);
   } 
 
   useEffect(() => {
     const coinElement = coinRef.current; 
-    const currencyElement = coinRef.current; 
+    const currencyElement = currencyRef.current; 
 
     coinElement.value = String(1);
     currencyElement.value = String(coin.currentPrice);
-
-    console.log(coinRef)
   },[])
   
   return (
